@@ -5,7 +5,7 @@ import torch
 
 model = AutoModelForCausalLM.from_pretrained('robertmyers/bpt-sft')
 tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-j-6B')
-world_size = 4
+world_size = 1
 ds_engine = deepspeed.init_inference(model,
                                         mp_size=world_size,
                                         dtype=torch.half,
