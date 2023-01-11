@@ -18,6 +18,7 @@ input_ids = tokenizer("Human: what is a money-line bet?\n", return_tensors="pt")
 # import code; code.interact(local=locals())
 
 output = model(input_ids)
+import code; code.interact(local=locals())
 
 output = tokenizer.decode(output[0], skip_special_tokens=True)
 if not torch.distributed.is_initialized() or torch.distributed.get_rank() == 0:
