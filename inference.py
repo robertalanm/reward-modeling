@@ -15,7 +15,9 @@ model = deepspeed.init_inference(model,
 
 input_ids = tokenizer("Hello, my dog is cute", return_tensors="pt").cuda()
 
-output = model(input_ids)
+output_ids = model(input_ids)
 
-
-import code; code.interact(local=locals())
+output = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+print(output)
+# check if on gpu 0 deepspeed, if so, import code; code.interact(local=locals())
+# import code; code.interact(local=locals())
