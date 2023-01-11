@@ -2,9 +2,11 @@ import deepspeed
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
+from bittensor import tokenizer
+
 
 model = AutoModelForCausalLM.from_pretrained('robertmyers/bpt-sft')
-tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-j-6B')
+# tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-j-6B')
 world_size = 1
 ds_engine = deepspeed.init_inference(model,
                                         mp_size=world_size,
@@ -20,7 +22,7 @@ input_ids = tokenizer("Human: what is a money-line bet?\n", return_tensors="pt")
 output = model(input_ids)
 import code; code.interact(local=locals())
 
-output = tokenizer.decode(output[0], skip_special_tokens=True)
+output = tokenizer.decode(output[0], skip_special_tokens=False)
 if not torch.distributed.is_initialized() or torch.distributed.get_rank() == 0:
     print(output)
 # # check if on gpu 0 deepspeed, if so, import code; code.interact(local=locals())
