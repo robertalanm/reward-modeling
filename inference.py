@@ -7,13 +7,15 @@ from bittensor import tokenizer as bt_tokenizer
 
 
 # model = AutoModelForCausalLM.from_pretrained('robertmyers/bpt-sft')
-# tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-j-6B')
+tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-j-6B')
 
 local_rank = int(os.getenv('LOCAL_RANK', '0'))
 world_size = int(os.getenv('WORLD_SIZE', '1'))
 
-generator = pipeline('text-generation', model='robertmyers/bpt-sft',
-                     device=local_rank)
+generator = pipeline('text-generation', 
+                     model='robertmyers/bpt-sft',
+                     device=local_rank,
+                     tokenizer=tokenizer,)
 
 generator.model = deepspeed.init_inference(generator.model,
                                            mp_size=world_size,
