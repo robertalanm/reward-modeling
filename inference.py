@@ -13,7 +13,7 @@ ds_engine = deepspeed.init_inference(model,
                                         replace_with_kernel_inject=True)
 
 model = ds_engine.module
-input_ids = tokenizer("Human: what is a money-line bet?\n", return_tensors="pt")['input_ids']
+input_ids = tokenizer("Human: what is a money-line bet?\n", return_tensors="pt")['input_ids'].to('cuda')
 
 # import code; code.interact(local=locals())
 
