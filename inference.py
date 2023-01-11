@@ -2,7 +2,7 @@ import deepspeed
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
-from bittensor import tokenizer
+from bittensor import tokenizer as bt_tokenizer
 
 
 model = AutoModelForCausalLM.from_pretrained('robertmyers/bpt-sft')
@@ -15,11 +15,8 @@ ds_engine = deepspeed.init_inference(model,
                                         replace_with_kernel_inject=True)
 
 model = ds_engine.module
-input_ids = tokenizer("Human: what is a money-line bet?\n")
-import code; code.interact(local=locals())
-
-
-# import code; code.interact(local=locals())
+tokenizer = bt_tokenizer()
+input_ids = tokenizer("Human: what is a money-line bet?\n", return_tensors="pt")['input_ids'].to('cuda')
 
 output = model(input_ids)
 import code; code.interact(local=locals())
