@@ -13,11 +13,11 @@ ds_engine = deepspeed.init_inference(model,
                                         replace_with_kernel_inject=True)
 
 model = ds_engine.module
-# input_ids = tokenizer("Hello, my dog is cute", return_tensors="pt")
+input_ids = tokenizer("Human: what is a money-line bet?\n", return_tensors="pt")
 
-output = model('Human: what is the capitol of texas?')
+output = model(input_ids)
 
-# output = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+output = tokenizer.decode(output[0], skip_special_tokens=True)
 if not torch.distributed.is_initialized() or torch.distributed.get_rank() == 0:
     print(output)
 # check if on gpu 0 deepspeed, if so, import code; code.interact(local=locals())
