@@ -24,7 +24,7 @@ generator.model = deepspeed.init_inference(generator.model,
 					   replace_with_kernel_inject=True)
 
 
-output = generator("Human: what is a money-line bet?\n", max_length=512, do_sample=True, top_k=50, top_p=0.95, num_return_sequences=1, early_stopping=True, temperature=0)
+output = generator("Human: what is a money-line bet?\n", max_length=512, do_sample=True, top_k=50, top_p=0.95, num_return_sequences=1, early_stopping=True)
 
 # model = ds_engine.module
 # tokenizer = bt_tokenizer()
