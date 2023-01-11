@@ -5,7 +5,7 @@ import torch
 
 model = AutoModelForCausalLM.from_pretrained('robertmyers/bpt-sft')
 tokenizer = AutoTokenizer.from_pretrained('EleutherAI/gpt-j-6B')
-world_size = 8
+world_size = 4
 model = deepspeed.init_inference(model,
                                         mp_size=world_size,
                                         dtype=torch.float,
@@ -13,7 +13,7 @@ model = deepspeed.init_inference(model,
                     replace_with_kernel_inject=True)
 
 
-input_ids = tokenizer("Hello, my dog is cute", return_tensors="pt").cuda()
+input_ids = tokenizer("Hello, my dog is cute", return_tensors="pt")
 
 output_ids = model(input_ids)
 
