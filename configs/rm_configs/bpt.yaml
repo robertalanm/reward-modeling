@@ -1,0 +1,21 @@
+model_path: "robertmyers/bpt-sft"
+tokenizer_path: "EleutherAI/gpt-j-6B"
+num_layers_unfrozen: 0.5
+
+train_args:
+  output_dir: "../ckpts/bpt-rm"
+  num_train_epochs: 1
+  logging_steps: 500
+  save_strategy: "epoch"
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  warmup_steps: 100
+  weight_decay: 0.01
+  learning_rate: 9.0e-6
+  save_total_limit: 1
+  logging_dir: "./logs"
+  fp16: False
+  bf16: True
+
+data_path: "Dahoas/synthetic-instruct-gptj-pairwise"
+trainer_type: "default"
