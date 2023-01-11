@@ -16,6 +16,7 @@ ds_engine = deepspeed.init_inference(model,
 
 model = ds_engine.module
 input_ids = tokenizer("Human: what is a money-line bet?\n")
+import code; code.interact(local=locals())
 
 
 # import code; code.interact(local=locals())
