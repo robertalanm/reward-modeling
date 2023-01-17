@@ -12,12 +12,12 @@ from transformers import AutoTokenizer
 import trlx
 from trlx.data.configs import TRLConfig
 
-REWARD_CHECKPOINT_PATH = "reward_model/rm_checkpoint/pytorch_model.bin"
+REWARD_CHECKPOINT_PATH = "reward_model/rm_checkpoint/hf_ckpt.pt"
 if not os.path.exists(REWARD_CHECKPOINT_PATH):
     os.makedirs("reward_model/rm_checkpoint", exist_ok=True)
     os.system(
         f"wget -O {REWARD_CHECKPOINT_PATH} \
-        https://huggingface.co/Dahoas/gptj-rm-static/resolve/main/pytorch_model.bin"
+        https://huggingface.co/Dahoas/gptj-rm-static/resolve/main/hf_ckpt.pt"
     )
 SFT_MODEL_PATH = ""
 
