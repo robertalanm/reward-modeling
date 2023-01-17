@@ -5,7 +5,7 @@ from typing import List
 import torch
 import random
 from datasets import load_dataset
-from .reward_models import RewardModel
+from reward_models import RewardModel
 from tqdm import tqdm
 from transformers import AutoTokenizer
 
