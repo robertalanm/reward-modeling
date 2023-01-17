@@ -142,6 +142,7 @@ if __name__ == "__main__":
 
     trainer = trlx.train(
         config.model.model_path,
+        tokenizer_path=config.tokenizer.tokenizer_path,
         reward_fn=reward_fn,
         prompts=train_prompts,
         eval_prompts=val_prompts[
