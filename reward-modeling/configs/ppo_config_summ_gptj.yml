@@ -55,3 +55,5 @@ method:
   cliprange_reward: 10
   gen_kwargs:
     max_new_tokens: 50
+
+tokenizer_name: "EleutherAI/gpt-j-6B"
