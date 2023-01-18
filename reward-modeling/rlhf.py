@@ -48,7 +48,7 @@ if __name__ == "__main__":
 
     # import code; code.interact(local=dict(globals(), **locals()))
     rw_model.load_state_dict(rm_model)
-    rw_model.half()
+    # rw_model.half()
     rw_model.eval()
     # rw_device = torch.device("cuda:0")  # set reward model device
     # rw_model.to(rw_device)
