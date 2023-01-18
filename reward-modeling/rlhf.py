@@ -43,7 +43,7 @@ if __name__ == "__main__":
     rw_model.load_state_dict(rm_model)
     rw_model.half()
     rw_model.eval()
-    rw_device = torch.device("cuda:7")  # set reward model device
+    rw_device = torch.device("cuda:0")  # set reward model device
     rw_model.to(rw_device)
 
     def train_test_split(dataset, test_size=0.2, random_state=42):
