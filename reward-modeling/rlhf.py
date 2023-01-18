@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # rw_model = RewardModel(config.rm.name, rw_tokenizer.eos_token)
     rw_model = make_rm("EleutherAI/gpt-neo-1.3B", "causal", "EleutherAI/gpt-neo-1.3B")
     rm_model = torch.load(REWARD_CHECKPOINT_PATH)
-    # import code; code.interact(local=dict(globals(), **locals()))
+    import code; code.interact(local=dict(globals(), **locals()))
     rw_model.load_state_dict(rm_model)
     rw_model.half()
     rw_model.eval()
