@@ -127,7 +127,7 @@ if __name__ == "__main__":
     )
 
     # data = load_dataset("Dahoas/rm-synthetic-hh", download_mode=DownloadMode.FORCE_REDOWNLOAD)["train"]
-    data = load_dataset("Dahoas/sft-synthetic-hh", download_mode=DownloadMode.FORCE_REDOWNLOAD)["train"]
+    data = load_dataset("Dahoas/sft-synthetic-hh", download_mode=DownloadMode.FORCE_REDOWNLOAD)
 
     dataset = SFTDataset(data, tokenizer)
     # Store data into prompt and label pairs
