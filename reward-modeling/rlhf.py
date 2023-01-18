@@ -4,8 +4,10 @@ from typing import List
 
 import torch
 import random
-from datasets import load_dataset
+from datasets import load_dataset, DownloadMode
 from reward_models import RewardModel
+from rm_datasets import SFTDataset
+
 from tqdm import tqdm
 from transformers import AutoTokenizer
 
@@ -121,8 +123,10 @@ if __name__ == "__main__":
         config.train.seq_length - config.method.gen_kwargs["max_new_tokens"]
     )
 
-    dataset = load_dataset(config.dataset.name)
+    data = load_dataset("Dahoas/pythia_synthetic_20B_inference_train", download_mode=DownloadMode.FORCE_REDOWNLOAD)["train"]
 
+
+    dataset = SFTDataset(data, tokenizer)
     # Store data into prompt and label pairs
     # train_set = [(sample["prompt"], sample["response"]) for sample in dataset["train"]]
     # val_set = [(sample["prompt"], sample["response"]) for sample in dataset["valid"]]
