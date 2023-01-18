@@ -30,7 +30,7 @@ if not os.path.exists(REWARD_CHECKPOINT_PATH):
 SFT_MODEL_PATH = ""
 
 
-if __name__ == "__main__":
+def main():
 
     config_path = pathlib.Path(__file__).parent.joinpath(
         "configs/ppo_config_summ_gptj.yml"
@@ -172,3 +172,7 @@ if __name__ == "__main__":
         ],  # sampling 1000 validation prompts for evaluation speed in training
         config=config,
     )
+
+
+if __name__ == "__main__":
+    main()
