@@ -37,7 +37,7 @@ if __name__ == "__main__":
     rw_tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-j-6B")
     rw_tokenizer.pad_token = rw_tokenizer.eos_token
     # rw_model = RewardModel(config.rm.name, rw_tokenizer.eos_token)
-    rw_model = make_rm('Dahoas/gptj-rm-static', "causal", config.tokenizer.tokenizer_path)
+    rw_model = make_rm(config.tokenizer.tokenizer_path, "causal", config.tokenizer.tokenizer_path)
     rw_model.load_state_dict(torch.load(REWARD_CHECKPOINT_PATH))
     rw_model.half()
     rw_model.eval()
