@@ -136,6 +136,7 @@ if __name__ == "__main__":
     train_set = [(sample["prompt"], sample["response"]) for sample in dataset["train"]]
     # val_set = [(sample["prompt"], sample["response"]) for sample in dataset["valid"]]
 
+    # if rank 0 
     # create train and val split from train set
     train_set, val_set = train_test_split(train_set, test_size=0.06, random_state=42)
     # train_size = int(0.94 * len(dataset))
@@ -146,6 +147,8 @@ if __name__ == "__main__":
     train_posts, train_summaries = zip(*train_set)
     val_posts, val_summaries = zip(*val_set)
 
+    # rewrite with
+
     # Get the OpenAI summaries
     post_summary_dict = {}
     train_prompts = get_prompt_dataset(train_posts, max_length_input)
@@ -155,6 +158,10 @@ if __name__ == "__main__":
     for i in tqdm(range(len(val_prompts))):
         post_summary_dict[val_prompts[i]] = val_summaries[i]
 
+
+
+    # if torch device rank 0, print starting training
+    print("Starting training")
     trainer = trlx.train(
         config.model.model_path,
         # tokenizer_path=config.tokenizer.tokenizer_path,
