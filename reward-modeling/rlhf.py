@@ -25,7 +25,7 @@ if not os.path.exists(REWARD_CHECKPOINT_PATH):
     os.makedirs("reward_model/rm_checkpoint", exist_ok=True)
     os.system(
         f"wget -O {REWARD_CHECKPOINT_PATH} \
-        https://huggingface.co/Dahoas/synthetic-gpt2-rm-static/resolve/main/hf_ckpt.pt"
+        https://huggingface.co/Dahoas/gptneo-rm-static/resolve/main/hf_ckpt.pt"
     )
 SFT_MODEL_PATH = ""
 
