@@ -25,7 +25,7 @@ if not os.path.exists(REWARD_CHECKPOINT_PATH):
     os.makedirs("reward_model/rm_checkpoint", exist_ok=True)
     os.system(
         f"wget -O {REWARD_CHECKPOINT_PATH} \
-        https://huggingface.co/Dahoas/synthetic-gpt2-rm-static/resolve/main/hf_ckpt.bt"
+        https://huggingface.co/Dahoas/synthetic-gpt2-rm-static/resolve/main/hf_ckpt.pt"
     )
 SFT_MODEL_PATH = ""
 
@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # rw_model = RewardModel(config.rm.name, rw_tokenizer.eos_token)
     rw_model = make_rm("gpt2", "causal", "gpt2")
     rm_model = torch.load(REWARD_CHECKPOINT_PATH)
-    import code; code.interact(local=dict(globals(), **locals()))
+    # import code; code.interact(local=dict(globals(), **locals()))
     rw_model.load_state_dict(rm_model)
     rw_model.half()
     rw_model.eval()
