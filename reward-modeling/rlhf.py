@@ -126,8 +126,8 @@ if __name__ == "__main__":
         config.train.seq_length - config.method.gen_kwargs["max_new_tokens"]
     )
 
-    data = load_dataset("Dahoas/rm-synthetic-hh", download_mode=DownloadMode.FORCE_REDOWNLOAD)["train"]
-
+    # data = load_dataset("Dahoas/rm-synthetic-hh", download_mode=DownloadMode.FORCE_REDOWNLOAD)["train"]
+    data = load_dataset("Dahoas/sft-synthetic-hh", download_mode=DownloadMode.FORCE_REDOWNLOAD)["train"]
 
     dataset = SFTDataset(data, tokenizer)
     # Store data into prompt and label pairs
