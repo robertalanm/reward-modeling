@@ -126,7 +126,7 @@ if __name__ == "__main__":
         config.train.seq_length - config.method.gen_kwargs["max_new_tokens"]
     )
 
-    data = load_dataset("Dahoas/pythia_synthetic_20B_inference_train", download_mode=DownloadMode.FORCE_REDOWNLOAD)["train"]
+    data = load_dataset("Dahoas/rm-synthetic-hh", download_mode=DownloadMode.FORCE_REDOWNLOAD)["train"]
 
 
     dataset = SFTDataset(data, tokenizer)
@@ -135,7 +135,8 @@ if __name__ == "__main__":
     # val_set = [(sample["prompt"], sample["response"]) for sample in dataset["valid"]]
 
     # create train and val split
-    train_set, val_set = random_split(dataset, [int(0.8 * len(dataset)), int(0.2 * len(dataset))])
+    train_size = int(0.94 * len(dataset))
+    train_set, val_set = random_split(dataset, [train_size, len(dataset) - train_size])
 
 
     # Split contents into summaries and labels
