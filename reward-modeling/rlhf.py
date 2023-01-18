@@ -44,6 +44,10 @@ if __name__ == "__main__":
     # rw_model = RewardModel(config.rm.name, rw_tokenizer.eos_token)
     rw_model = make_rm("gpt2", "causal", "gpt2")
     rm_model = torch.load(REWARD_CHECKPOINT_PATH)
+
+    # change all the keys at the begging to inclue model.* if needed
+    rm_model = {k.replace("transformer.", "model.transformer."): v for k, v in rm_model.items()}
+
     import code; code.interact(local=dict(globals(), **locals()))
     rw_model.load_state_dict(rm_model)
     rw_model.half()
