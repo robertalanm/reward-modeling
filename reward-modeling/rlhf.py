@@ -131,12 +131,13 @@ if __name__ == "__main__":
 
     dataset = SFTDataset(data, tokenizer)
     # Store data into prompt and label pairs
-    # train_set = [(sample["prompt"], sample["response"]) for sample in dataset["train"]]
+    train_set = [(sample["prompt"], sample["response"]) for sample in dataset["train"]]
     # val_set = [(sample["prompt"], sample["response"]) for sample in dataset["valid"]]
 
-    # create train and val split
-    train_size = int(0.94 * len(dataset))
-    train_set, val_set = random_split(dataset, [train_size, len(dataset) - train_size])
+    # create train and val split from train set
+    train_set, val_set = train_test_split(train_set, test_size=0.2, random_state=42)
+    # train_size = int(0.94 * len(dataset))
+    # train_set, val_set = random_split(dataset, [train_size, len(dataset) - train_size])
 
 
     # Split contents into summaries and labels
