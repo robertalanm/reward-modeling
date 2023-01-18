@@ -25,7 +25,7 @@ if not os.path.exists(REWARD_CHECKPOINT_PATH):
     os.makedirs("reward_model/rm_checkpoint", exist_ok=True)
     os.system(
         f"wget -O {REWARD_CHECKPOINT_PATH} \
-        https://huggingface.co/Dahoas/gptneo-rm-static/resolve/main/pytorch_model.bin"
+        https://huggingface.co/Dahoas/synthetic-gpt2-rm-static/resolve/main/pytorch_model.bin"
     )
 SFT_MODEL_PATH = ""
 
@@ -39,10 +39,10 @@ if __name__ == "__main__":
 
 
     # Load the pre-trained reward model
-    rw_tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-neo-1.3B")
+    rw_tokenizer = AutoTokenizer.from_pretrained("gpt2")
     rw_tokenizer.pad_token = rw_tokenizer.eos_token
     # rw_model = RewardModel(config.rm.name, rw_tokenizer.eos_token)
-    rw_model = make_rm("EleutherAI/gpt-neo-1.3B", "causal", "EleutherAI/gpt-neo-1.3B")
+    rw_model = make_rm("gpt2", "causal", "gpt2")
     rm_model = torch.load(REWARD_CHECKPOINT_PATH)
     import code; code.interact(local=dict(globals(), **locals()))
     rw_model.load_state_dict(rm_model)
