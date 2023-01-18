@@ -99,7 +99,7 @@ if __name__ == "__main__":
                     prompts[i].split("Assistant:")[0],
                     truncation=True,
                     max_length=max_length
-                    - 5,  # to make sure "TL;DR" dont get truncated
+                    - 9,  # to make sure "TL;DR" dont get truncated
                 )["input_ids"],
                 skip_special_tokens=True,
             ).strip()
@@ -149,10 +149,10 @@ if __name__ == "__main__":
     # Get the OpenAI summaries
     post_summary_dict = {}
     train_prompts = get_prompt_dataset(train_posts, max_length_input)
-    for i in range(len(train_prompts)):
+    for i in tqdm(range(len(train_prompts))):
         post_summary_dict[train_prompts[i]] = train_summaries[i]
     val_prompts = get_prompt_dataset(val_posts, max_length_input)
-    for i in range(len(val_prompts)):
+    for i in tqdm(range(len(val_prompts))):
         post_summary_dict[val_prompts[i]] = val_summaries[i]
 
     trainer = trlx.train(
