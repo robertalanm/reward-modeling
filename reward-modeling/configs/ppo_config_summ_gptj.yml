@@ -11,7 +11,7 @@ train:
   orchestrator: "PPOOrchestrator"
   trainer: "AcceleratePPOTrainer"
 
-rm:
+reward:
   name: "Dahoas/gptj-rm-static"
 
 dataset:
