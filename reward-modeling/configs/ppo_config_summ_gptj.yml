@@ -11,6 +11,9 @@ train:
   orchestrator: "PPOOrchestrator"
   trainer: "AcceleratePPOTrainer"
 
+rm:
+  name: "Dahoas/gptj-rm-static"
+
 dataset:
   name: "Dahoas/pythia_synthetic_20B_inference_train"
 
