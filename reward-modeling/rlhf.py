@@ -126,7 +126,7 @@ if __name__ == "__main__":
         config.train.seq_length - config.method.gen_kwargs["max_new_tokens"]
     )
 
-    # data = load_dataset("Dahoas/rm-synthetic-hh", download_mode=DownloadMode.FORCE_REDOWNLOAD)["train"]
+    # data = load_dataset("Dahoas/rm-synthetic-hh", download_mode=DownloadMode.FORCE_REDOWNLOAD)
     dataset = load_dataset("Dahoas/sft-synthetic-hh", download_mode=DownloadMode.FORCE_REDOWNLOAD)
 
     # dataset = SFTDataset(data, tokenizer)
@@ -135,7 +135,7 @@ if __name__ == "__main__":
     # val_set = [(sample["prompt"], sample["response"]) for sample in dataset["valid"]]
 
     # create train and val split from train set
-    train_set, val_set = train_test_split(train_set, test_size=0.2, random_state=42)
+    train_set, val_set = train_test_split(train_set, test_size=0.06, random_state=42)
     # train_size = int(0.94 * len(dataset))
     # train_set, val_set = random_split(dataset, [train_size, len(dataset) - train_size])
 
@@ -155,7 +155,7 @@ if __name__ == "__main__":
 
     trainer = trlx.train(
         config.model.model_path,
-        tokenizer_path=config.tokenizer.tokenizer_path,
+        # tokenizer_path=config.tokenizer.tokenizer_path,
         reward_fn=reward_fn,
         prompts=train_prompts,
         eval_prompts=val_prompts[
