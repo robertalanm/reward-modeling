@@ -11,6 +11,9 @@ from rm_datasets import SFTDataset
 from tqdm import tqdm
 from transformers import AutoTokenizer
 
+from torch.utils.data import random_split
+
+
 from utils import make_rm
 
 
@@ -45,8 +48,8 @@ if __name__ == "__main__":
     rw_model.load_state_dict(rm_model)
     rw_model.half()
     rw_model.eval()
-    rw_device = torch.device("cuda:0")  # set reward model device
-    rw_model.to(rw_device)
+    # rw_device = torch.device("cuda:0")  # set reward model device
+    # rw_model.to(rw_device)
 
     def train_test_split(dataset, test_size=0.2, random_state=42):
         """Split dataset into train and test set"""
@@ -72,8 +75,8 @@ if __name__ == "__main__":
                 padding="max_length",
                 return_tensors="pt",
             )
-            input_ids = encodings_dict["input_ids"].to(rw_device)
-            attn_masks = encodings_dict["attention_mask"].to(rw_device)
+            input_ids = encodings_dict["input_ids"]#.to(rw_device)
+            attn_masks = encodings_dict["attention_mask"]#.to(rw_device)
             input_ids = input_ids.repeat(2, 1)
             attn_masks = attn_masks.repeat(2, 1)
             with torch.no_grad():
@@ -132,9 +135,7 @@ if __name__ == "__main__":
     # val_set = [(sample["prompt"], sample["response"]) for sample in dataset["valid"]]
 
     # create train and val split
-    train_set, val_set = train_test_split(
-        dataset, test_size=0.2, random_state=42
-    )
+    train_set, val_set = random_split(dataset, [int(0.8 * len(dataset)), int(0.2 * len(dataset))])
 
 
     # Split contents into summaries and labels
