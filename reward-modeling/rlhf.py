@@ -20,12 +20,12 @@ from utils import make_rm
 import trlx
 from trlx.data.configs import TRLConfig
 
-REWARD_CHECKPOINT_PATH = "reward_model/rm_checkpoint/pytorch_model.bin"
+REWARD_CHECKPOINT_PATH = "reward_model/rm_checkpoint/hf_ckpt.pt"
 if not os.path.exists(REWARD_CHECKPOINT_PATH):
     os.makedirs("reward_model/rm_checkpoint", exist_ok=True)
     os.system(
         f"wget -O {REWARD_CHECKPOINT_PATH} \
-        https://huggingface.co/Dahoas/synthetic-gpt2-rm-static/resolve/main/pytorch_model.bin"
+        https://huggingface.co/Dahoas/synthetic-gpt2-rm-static/resolve/main/hf_ckpt.bt"
     )
 SFT_MODEL_PATH = ""
 
