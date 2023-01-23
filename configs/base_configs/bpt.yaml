@@ -6,10 +6,10 @@ save_dir: "../ckpts/bpt-sft"
 
 train_args:
   output_dir: "../ckpts/bpt-sft"
-  num_train_epochs: 1
+  num_train_epochs: 16
   logging_steps: 500
   save_strategy: "epoch"
-  per_device_train_batch_size: 1
+  per_device_train_batch_size: 4
   per_device_eval_batch_size: 1
   warmup_steps: 100
   weight_decay: 0.01
@@ -21,7 +21,7 @@ train_args:
   evaluation_strategy: "epoch"
 
 
-data_path: "Dahoas/sft-synthetic-hh"
-# data_path: "robertmyers/bpt-static"
+# data_path: "Dahoas/sft-synthetic-hh"
+data_path: "robertmyers/bpt-static"
 # data_path: "Dahoas/sft-hh-rlhf"
 

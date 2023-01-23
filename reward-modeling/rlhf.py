@@ -160,8 +160,7 @@ def main():
 
 
 
-    # if torch device rank 0, print starting training
-    print("Starting training")
+
     trainer = trlx.train(
         config.model.model_path,
         # tokenizer_path=config.tokenizer.tokenizer_path,
