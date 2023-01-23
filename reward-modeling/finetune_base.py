@@ -86,6 +86,7 @@ def train(config):
             cols = ["prompt", "response"]
             wandb.log({"samples": wandb.Table(columns=cols, data=data)})
 
+    model.save_pretrained('bpt-sft-base')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
