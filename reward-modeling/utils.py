@@ -153,7 +153,7 @@ if __name__ == "__main__":
     parser.add_argument("--make_repo", type=bool, default=False)
     parser.add_argument("--is_rm", type=str, default=False)
     # model_ckpt
-    parser.add_argument("--model_ckpt", type=str, default="checkpoint-18409/")
+    parser.add_argument("--model_ckpt", type=str, default="checkpoint-6496/")
     args = parser.parse_args()
     hf_upload(args.model_path, args.repo_name, args.model_ckpt, args.is_rm, args.make_repo)
     # hf_upload(make_repo=False)
