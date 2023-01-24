@@ -1,5 +1,5 @@
-model_path: "EleutherAI/gpt-j-6B"
-tokenizer_path: "EleutherAI/gpt-j-6B"
+model_path: "togethercomputer/GPT-JT-6B-v1"
+tokenizer_path: "togethercomputer/GPT-JT-6B-v1"
 # model_path: "facebook/opt-30b" 
 # tokenizer_path: "facebook/opt-30b"
 save_dir: "../ckpts/bpt-sft"
