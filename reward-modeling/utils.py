@@ -149,7 +149,7 @@ if __name__ == "__main__":
     #convert_deepspeed_checkpoint(is_rm=True)
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_path", type=str, default="/home/ubuntu/reward-modeling/ckpts/bpt-sft")
-    parser.add_argument("--repo_name", type=str, default="Dahoas/gptj-rm-static")
+    parser.add_argument("--repo_name", type=str, default="robertmyers/bpt-sft")
     parser.add_argument("--make_repo", type=bool, default=False)
     parser.add_argument("--is_rm", type=str, default=False)
     # model_ckpt
