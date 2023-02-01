@@ -1,12 +1,12 @@
-model_path: "EleutherAI/gpt-j-6B"
+model_path: "robertmyers/bpt-ppo"
 tokenizer_path: "EleutherAI/gpt-j-6B"
 # model_path: "facebook/opt-30b" 
 # tokenizer_path: "facebook/opt-30b"
-save_dir: "../ckpts/bpt-sft"
+save_dir: "../ckpts/bpt-ppo"
 
 train_args:
-  output_dir: "../ckpts/bpt-sft"
-  num_train_epochs: 8
+  output_dir: "../ckpts/bpt-ppo"
+  num_train_epochs: 1
   logging_steps: 500
   save_strategy: "epoch"
   per_device_train_batch_size: 2
