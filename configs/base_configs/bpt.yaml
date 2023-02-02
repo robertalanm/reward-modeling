@@ -6,8 +6,8 @@ save_dir: "../ckpts/bpt-ppo"
 
 train_args:
   output_dir: "../ckpts/bpt-ppo"
-  num_train_epochs: 1
-  logging_steps: 500
+  num_train_epochs: 2
+  logging_steps: 100
   save_strategy: "epoch"
   per_device_train_batch_size: 2
   per_device_eval_batch_size: 1
