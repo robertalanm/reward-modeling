@@ -20,7 +20,8 @@ def train(config):
         tokenizer = AutoTokenizer.from_pretrained(config["tokenizer_path"])
     except ValueError:
         tokenizer = AutoTokenizer.from_pretrained(config["tokenizer_path"], use_fast=False)
-    tokenizer.pad_token = tokenizer.eos_token
+    # tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.add_special_tokens({'pad_token': '[PAD]'})
     training_args = TrainingArguments(**config["train_args"])
     model = AutoModelForCausalLM.from_pretrained(config["model_path"]).cuda()
 
