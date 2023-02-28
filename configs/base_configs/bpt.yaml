@@ -2,10 +2,10 @@ model_path: "facebook/galactica-6.7b"
 tokenizer_path: "facebook/galactica-6.7b"
 # model_path: "facebook/opt-30b" 
 # tokenizer_path: "facebook/opt-30b"
-save_dir: "../ckpts/bpt-ppo"
+save_dir: "../ckpts/bpt-online"
 
 train_args:
-  output_dir: "../ckpts/bpt-ppo"
+  output_dir: "../ckpts/bpt-online"
   num_train_epochs: 16
   logging_steps: 100
   save_strategy: "epoch"
