@@ -1,5 +1,5 @@
-model_path: "decapoda-research/llama-7b-hf"
-tokenizer_path: "decapoda-research/llama-7b-hf"
+model_path: "decapoda-research/llama-13b-hf"
+tokenizer_path: "decapoda-research/llama-13b-hf"
 # model_path: "facebook/opt-30b" 
 # tokenizer_path: "facebook/opt-30b"
 save_dir: "../ckpts/bpt-instruct"
