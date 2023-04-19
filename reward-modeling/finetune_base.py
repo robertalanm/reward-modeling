@@ -32,8 +32,10 @@ def train(config):
     import random
 
     def reduce_dataset_size(dataset, reduction_percentage=0.94):
-        new_size = int(len(dataset) * (1 - reduction_percentage))
-        reduced_dataset = random.sample(dataset, new_size)
+        data_list = list(dataset.items())
+        new_size = int(len(data_list) * (1 - reduction_percentage))
+        reduced_data_list = random.sample(data_list, new_size)
+        reduced_dataset = dict(reduced_data_list)
         return reduced_dataset
 
     data = reduce_dataset_size(data)
