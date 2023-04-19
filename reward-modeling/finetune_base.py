@@ -27,7 +27,7 @@ def train(config):
 
 
 
-    data = load_dataset(config["data_path"], download_mode=DownloadMode.FORCE_REDOWNLOAD)["train"]
+    data = load_dataset(config["data_path"], download_mode=DownloadMode.FORCE_REDOWNLOAD, revision='v1.2-jazzy')["train"]
     print("Len data: ", len(data))
 
     dataset = SFTDataset(data, tokenizer)

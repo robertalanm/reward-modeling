@@ -1,5 +1,5 @@
-model_path: "decapoda-research/llama-13b-hf"
-tokenizer_path: "decapoda-research/llama-13b-hf"
+model_path: "stabilityai/stablelm-base-alpha-3b"
+tokenizer_path: "stabilityai/stablelm-base-alpha-3b"
 # model_path: "facebook/opt-30b" 
 # tokenizer_path: "facebook/opt-30b"
 save_dir: "../ckpts/bpt-instruct"
@@ -22,6 +22,6 @@ train_args:
 
 
 # data_path: "Dahoas/sft-synthetic-hh"
-data_path: "robertmyers/bpt-static"
+data_path: "nomic-ai/gpt4all-j-prompt-generations"
 # data_path: "Dahoas/sft-hh-rlhf"
 
