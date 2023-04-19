@@ -28,7 +28,16 @@ def train(config):
 
 
     data = load_dataset(config["data_path"], revision='v1.2-jazzy')["train"]
-    data = data[0:1000]
+
+    import random
+
+    def reduce_dataset_size(dataset, reduction_percentage=0.94):
+        new_size = int(len(dataset) * (1 - reduction_percentage))
+        reduced_dataset = random.sample(dataset, new_size)
+        return reduced_dataset
+
+    data = reduce_dataset_size(data, 0.94)
+
     print("Len data: ", len(data))
 
 
