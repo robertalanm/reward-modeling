@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import torch
-from torch.utils.data import Dataset, random_split
+from torch.utils.data import Dataset, random_split, Subset
 from transformers import AutoTokenizer, TrainingArguments, Trainer, AutoModelForCausalLM, IntervalStrategy
 import json
 import argparse
@@ -29,14 +29,8 @@ def train(config):
 
     data = load_dataset(config["data_path"], revision='v1.2-jazzy')["train"]
 
-    import random
-
-    def reduce_dataset_size(dataset, reduction_percentage=0.94):
-        new_size = int(len(dataset) * (1 - reduction_percentage))
-        reduced_dataset = random.sample(dataset, new_size)
-        return reduced_dataset
-
-    data = reduce_dataset_size(data, 0.94)
+    indices = torch.arange(10000)
+    data = Subset(data, indices)
 
     print("Len data: ", len(data))
 
