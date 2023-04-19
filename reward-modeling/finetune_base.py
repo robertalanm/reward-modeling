@@ -31,11 +31,22 @@ def train(config):
     print("Len data: ", len(data))
 
     dataset = SFTDataset(data, tokenizer)
+    
+    # reduce the examples to 1000 for debugging
+
+    import random
+
+    def reduce_dataset_size(dataset, reduction_percentage=0.94):
+        new_size = int(len(dataset) * (1 - reduction_percentage))
+        reduced_dataset = random.sample(dataset, new_size)
+        return reduced_dataset
+
+    dataset = reduce_dataset_size(dataset)
     train_size = int(0.94 * len(dataset))
-    # train_dataset, val_dataset = random_split(dataset, [train_size, len(dataset) - train_size])
+    train_dataset, val_dataset = random_split(dataset, [train_size, len(dataset) - train_size])
 
     # split the train dataset down to 1000 examples for debugging
-    train_dataset, val_dataset = random_split(train_dataset, [1000, len(train_dataset) - 1000])
+    # train_dataset, val_dataset = random_split(train_dataset, [1000, len(train_dataset) - 1000])
 
     Trainer(model=model, args=training_args, train_dataset=train_dataset,
             eval_dataset=val_dataset, data_collator=lambda data: {'input_ids': torch.stack([f[0] for f in data]),
