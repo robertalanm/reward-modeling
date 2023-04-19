@@ -29,9 +29,8 @@ def train(config):
 
     data = load_dataset(config["data_path"], revision='v1.2-jazzy')["train"]
 
-    indices = torch.arange(10000)
-    data = Subset(data, indices)
 
+    data = data.filter(lambda e, i: i<1000, with_indices=True)
     print("Len data: ", len(data))
 
 
