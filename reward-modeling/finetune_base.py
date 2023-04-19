@@ -8,7 +8,7 @@ import argparse
 from utils import load_yaml, load_jsonl, freeze_bottom_causal_layers
 from rm_datasets import SFTDataset
 import wandb
-from datasets import load_dataset, DownloadMode 
+from datasets import load_dataset 
 from torch.utils.data import DataLoader
 
 from transformers.deepspeed import HfDeepSpeedConfig
@@ -32,10 +32,8 @@ def train(config):
     import random
 
     def reduce_dataset_size(dataset, reduction_percentage=0.94):
-        data_list = list(dataset.items())
-        new_size = int(len(data_list) * (1 - reduction_percentage))
-        reduced_data_list = random.sample(data_list, new_size)
-        reduced_dataset = dict(reduced_data_list)
+        split = 1 - reduction_percentage
+        reduced_dataset = random_split(dataset, test_size=split)['train']
         return reduced_dataset
 
     data = reduce_dataset_size(data)
