@@ -12,7 +12,7 @@ class SFTDataset(Dataset):
             EOS_ID = tokenizer("<|endoftext|>")["input_ids"][0]
 
             # max_length = min(1024, max([len(tokenizer.encode(ele["prompt"] + "\n\n" + ele["response"] + '<|endoftext|>')) for ele in data]))
-            max_length = 2048
+            max_length = 4096
             print("Max length: {}".format(max_length))
 
             # Data expected in prompt response pairs
