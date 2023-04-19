@@ -28,15 +28,9 @@ def train(config):
 
 
     data = load_dataset(config["data_path"], revision='v1.2-jazzy')["train"]
+    data = data[0:1000]
     print("Len data: ", len(data))
-    import random
 
-    def reduce_dataset_size(dataset, reduction_percentage=0.94):
-        split = 1 - reduction_percentage
-        reduced_dataset = random_split(dataset, test_size=split)['train']
-        return reduced_dataset
-
-    data = reduce_dataset_size(data)
 
     dataset = SFTDataset(data, tokenizer)
     
