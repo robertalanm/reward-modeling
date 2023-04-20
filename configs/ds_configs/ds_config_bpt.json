@@ -13,7 +13,7 @@
 	"zero_optimization": {
 		"stage": 2,
 		"offload_param": {
-		  "device": "none"
+		  "device": "cpu"
 		},
 		"offload_optimizer": {
 		  "device": "none"
